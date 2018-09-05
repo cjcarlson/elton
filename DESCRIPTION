@@ -1,0 +1,14 @@
+Package: elton
+Title: Eltonian Species Distribution Models Using Food Webs
+Version: 0.0.0.9000
+Authors@R: person("Colin", "Carlson", email = "ccarlson@sesync.org",
+  role = c("aut", "cre")); person("Phillip", "Staniczenko", email = "pstaniczenko@sesync.org",
+  role = c("aut", "cre"))
+Description: Bayesian network methods; Eltonian niche concepts. Joint species distribution models, done right. IN DEVELOPMENT.
+Depends: R (>= 3.3.2)
+License: CC-BY.
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1.9000
+Imports: gRain,
+    igraph
