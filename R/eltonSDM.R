@@ -16,7 +16,7 @@
 #' r4 <- raster(matrix(nrow=5,ncol=5,c(rnorm(25,0.7,0.05))))
 #' r5 <- raster(matrix(nrow=5,ncol=5,c(rnorm(25,0.7,0.05))))
 #' r6 <- raster(matrix(nrow=5,ncol=5,c(rnorm(25,0.7,0.05))))
-#' r7 <- raster(matrix(nrow=5,ncol=5,c(rnorm(25,0.1,0.05))))
+#' r7 <- raster(matrix(nrow=5,ncol=5,c(rep(0.5,25))))
 #' M2 <- matrix(c(rep(0,42),1,1,1,1,1,5,0), nrow=7, ncol=7)
 #' rstack <- stack(r1,r2,r3,r4,r5,r6,r7)
 #' posteriors <- eltonSDM(rstack,M2)
