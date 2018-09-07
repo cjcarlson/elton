@@ -1,2 +1,6 @@
 # The elton R package
-In progress! Stop clicking around on my page.
+
+Authors: 
+Phil Staniczenko (pstaniczenko@sesync.org)
+Colin J. Carlson (ccarlson@sesync.org)
+Prabu Sivasubramaniam
