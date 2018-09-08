@@ -1,8 +1,8 @@
 # The elton R package
 
-<img align="right" src="elton 2.jpg" height="260"/>
+<img align="right" src="elton 2.jpg" height="240"/>
 
-<img align="right" src="elton.jpg" height="300"/>
+<img align="right" src="elton.jpg" height="285"/>
 
 Authors: 
 
