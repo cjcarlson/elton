@@ -1,6 +1,4 @@
-
 <img align="right" src="elton 2.jpg" height="240"/>
-
 <img align="right" src="elton.jpg" height="285"/>
 
 # The elton R package
