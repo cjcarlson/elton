@@ -1,5 +1,7 @@
 # The elton R package
 
+<img align="right" src="elton.jpg" height="285"/>
+
 Authors
 ----------
 
@@ -8,9 +10,6 @@ Phil Staniczenko (pstaniczenko@sesync.org)
 Colin J. Carlson (ccarlson@sesync.org)
 
 Prabu Sivasubramaniam
-
-<img align="right" src="elton.jpg" height="285"/>
-
 
 Dependencies
 ----------------------
