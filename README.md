@@ -7,3 +7,5 @@ Phil Staniczenko (pstaniczenko@sesync.org)
 Colin J. Carlson (ccarlson@sesync.org)
 
 Prabu Sivasubramaniam
+
+<img align="right" src="elton.jpg" height="300"/>
