@@ -1,4 +1,5 @@
-# The elton R package
+# The elton R package :globe_with_meridians:
+
 
 <img align="right" src="two of them.jpg" height="285"/>
 
