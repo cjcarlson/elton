@@ -1,20 +1,20 @@
 #' Build Table
-#' 
+#'
 # Description
-#'  
+#'
 #' @description
-#' More description 
-#' 
-#' 
+#' More description
+#'
+#'
 #' @param value text
 #'
 #' @keywords text
 #' @export
 #' @examples
-#' 
-#' 
+#'
+#'
 
-BuildTable <- function(M, Pi, offest, model, alpha=1, beta=1){
+BuildTable <- function(M, Pi, offset, model, alpha=1, beta=1){
   # form input for getMarginals_gRain()  including state tables for each species
   use_sf <- 1  # USER-DEFINED OPTION
   if (use_sf==1){significant_figures <- 7}
@@ -38,7 +38,7 @@ BuildTable <- function(M, Pi, offest, model, alpha=1, beta=1){
       # species is a consumer
       X <- matrix(0, 2^sum(M[, i] != 0), 1)
       rownames(X) <- getNames(prey)  # top-to-bottom: all influencing species absent to all present
-      if(model=="linear" || model=="nonlinear"){       
+      if(model=="linear" || model=="nonlinear"){
         for(j in 1:(2^n)){
           tmp <- j - 1
           v <- numeric(n)  # create a vector of length n (entry-1 if species present in state)
@@ -56,13 +56,13 @@ BuildTable <- function(M, Pi, offest, model, alpha=1, beta=1){
           if(model=="linear"){
             if (use_sf==1){X[j, 1] <- signif(GetLinearResponse(frac_loss, PiVector[i]), digits=significant_figures)}
             else{X[j, 1] <- GetLinearResponse(frac_loss, PiVector[i])}
-          } 
+          }
           if(model=="nonlinear"){
             if(use_sf==1){X[j, 1] <- signif(GetNonLinearResponse(frac_loss, PiVector[i], alpha, beta), digits=significant_figures)}
             else{X[j, 1] <- GetNonLinearResponse(frac_loss, PiVector[i], alpha, beta)}
           }
         }
-      } 
+      }
       else if(model=="topo"){
         for(j in 1:(2^n)){
           tmp <- j-1
@@ -77,7 +77,7 @@ BuildTable <- function(M, Pi, offest, model, alpha=1, beta=1){
               X[j, 1] <- PiVector[i]
               break
             }
-          } 
+          }
         }
       }
       else if(model == "binaryplusminus_linear"){
@@ -103,7 +103,7 @@ BuildTable <- function(M, Pi, offest, model, alpha=1, beta=1){
           }
           else{
             X[j, 1] <- GetBinaryLinearFacInhResponse(netcontributingunits, maxunits, PiVector[i])
-          } 
+          }
         }
       }
       else if(model == "binaryplusminus_OR"){
@@ -129,7 +129,7 @@ BuildTable <- function(M, Pi, offest, model, alpha=1, beta=1){
           }
           else{
             X[j, 1] <- GetBinaryORFacInhResponse(netcontributingunits, maxunits, PiVector[i])
-          } 
+          }
         }
       }
       else if(model == "binaryplusminus_nonlinear"){
@@ -161,7 +161,7 @@ BuildTable <- function(M, Pi, offest, model, alpha=1, beta=1){
           }
           else{
             X[j, 1] <- GetBinaryNonLinearFacInhResponse(netcontributingunits, posEdges_state, negEdges_state, maxunits, PiVector[i], alpha, beta)
-          } 
+          }
         }
       }
       else if(model == "ticks"){
@@ -193,15 +193,15 @@ BuildTable <- function(M, Pi, offest, model, alpha=1, beta=1){
           }
           else{
             X[j, 1] <- TicksResponse(netcontributingunits, posEdges_state, negEdges_state, maxunits, PiVector[i], offset[i], alpha, beta)
-          } 
+          }
         }
       }
       else {
         stop("You must specify a response form: binaryplusminus_linear")
-      }	
+      }
       Table[[variable_name]] <- X
     }
-  } 
+  }
   Table$model <- model
   return(Table)
 }
