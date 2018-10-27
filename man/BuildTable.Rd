@@ -4,7 +4,7 @@
 \alias{BuildTable}
 \title{Build Table}
 \usage{
-BuildTable(M, Pi, offest, model, alpha = 1, beta = 1)
+BuildTable(M, Pi, offset, model, alpha = 1, beta = 1)
 }
 \arguments{
 \item{value}{text}

@@ -11,7 +11,6 @@
 #'
 #' @keywords text
 #' @export
-#' @examples
 
 ################ RESPONSE TO THE PRESENCE OF OTHER SPECIES
 GetBinaryLinearFacInhResponse <- function(netcontributingunits, maxunits, p){
@@ -37,7 +36,6 @@ GetBinaryLinearFacInhResponse <- function(netcontributingunits, maxunits, p){
 #'
 #' @keywords text
 #' @export
-#' @examples
 
 GetBinaryORFacInhResponse <- function(netcontributingunits, maxunits, p){
   # OR response relating number of faciliatory and/or inhibitory species present to probability of focal species presence
@@ -70,7 +68,6 @@ GetBinaryORFacInhResponse <- function(netcontributingunits, maxunits, p){
 #'
 #' @keywords text
 #' @export
-#' @examples
 
 
 GetBinaryNonLinearFacInhResponse <- function(netcontributingunits, posEdges, negEdges, maxunits, p, a, b){
@@ -100,7 +97,6 @@ GetBinaryNonLinearFacInhResponse <- function(netcontributingunits, posEdges, neg
 #'
 #' @keywords text
 #' @export
-#' @examples
 
 TicksResponse <- function(netcontributingunits, posEdges, negEdges, maxunits, p, offset, a, b){
   # nonlinear response (beta function with parameters a and b) relating number of faciliatory and/or inhibitory species present to probability of focal species presence
@@ -143,4 +139,49 @@ TicksResponse <- function(netcontributingunits, posEdges, negEdges, maxunits, p,
     positivecontribution <- p * (pbeta(posEdges / maxunits, a, b))
     return(returnvalue)
   }
+}
+
+
+TicksResponse2 <- function(posEdges, p, maxunits, a, b, offset=0){
+  # nonlinear response (beta function with parameters a and b) relating number of faciliatory and/or inhibitory species present to probability of focal species presence
+  if(p > 0.5){
+    if(posEdges==(maxunits/2)){
+      returnvalue <- p
+    }
+    else if (posEdges > (maxunits/2)){
+      positivecontribution <- (p - offset) * pbeta((posEdges - (maxunits/2))/(maxunits/2), a, b)
+      if((p + positivecontribution) >= 1){
+        returnvalue <- 1
+      }
+      else {
+        returnvalue <- p + positivecontribution
+      }
+    }
+    else if (posEdges < (maxunits/2)){
+      positivecontribution <- (p - offset) * pbeta(((maxunits/2) - posEdges)/(maxunits/2), a, b)
+      returnvalue <- p - positivecontribution
+      
+    }
+    else {print("ERROR in TicksResponse()")}
+    positivecontribution <- p * (pbeta(posEdges / maxunits, a, b))
+    return(returnvalue)
+  }
+  else {
+    if(posEdges==(maxunits/2)){
+      returnvalue <- p
+    }
+    else if (posEdges > (maxunits/2)){
+      positivecontribution <- (p - offset) * pbeta((posEdges - (maxunits/2))/(maxunits/2), a, b)
+      returnvalue <- p + positivecontribution
+    }
+    else if (posEdges < (maxunits/2)){
+      positivecontribution <- (p - offset) * pbeta(((maxunits/2) - posEdges)/(maxunits/2), a, b)
+      returnvalue <- p - positivecontribution
+      
+    }
+    else {print("ERROR in TicksResponse()")}
+    positivecontribution <- p * (pbeta(posEdges / maxunits, a, b))
+    return(returnvalue)
+  }
+  return(returnvalue)
 }

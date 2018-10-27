@@ -7,8 +7,8 @@
 #' @param value text
 #'
 #' @keywords text
-#' @export
-#' @examples
+#' 
+#' @examples 
 #' 
 #' r1 <- raster(matrix(nrow=5,ncol=5,c(rnorm(25,0.7,0.05))))
 #' r2 <- raster(matrix(nrow=5,ncol=5,c(rnorm(25,0.7,0.05))))
@@ -21,6 +21,8 @@
 #' rstack <- stack(r1,r2,r3,r4,r5,r6,r7)
 #' posteriors <- eltonSDM(rstack,M2)
 #' 
+#' @export
+
 
 eltonSDM <- function(stack.prior, M, offset=NA, model.sel='ticks') {
   stack.post <- stack.prior
@@ -43,3 +45,34 @@ eltonSDM <- function(stack.prior, M, offset=NA, model.sel='ticks') {
   return(stack.post)
 }
 
+
+eltonSDM.2 <- function(stack.prior, M, offset=NA, weighted=FALSE, model.sel='ticks') {
+  
+  stack.post <- stack.prior
+  
+  for (i in 1:ncol(M)) {
+    
+    Hmax <- sum(M[,i]>0)
+    if(Hmax>0) {
+      
+      hosts <- which(M[,i]>0)
+      
+      if(weighted==TRUE) {
+        hostsum <- sum(stack.prior[[hosts]])
+      } else {
+        hostsum <- sum(stack.prior[[hosts]]*(M[hosts,i]/sum(M[hosts,i])))*Hmax
+      }
+      
+      #TicksResponse2 <- function(posEdges, maxunits, p, a, b, offset=0)
+      stack.post[[i]] <- overlay(hostsum, stack.prior[[i]], fun=function(x,y) {return(TicksResponse2(x,y, maxunits=Hmax, a=1, b=1))})
+      
+      #dpoisbinom(0,c(0.2,0.8))
+    }
+    
+  }
+  
+  
+  
+  return(stack.post)
+  
+}
